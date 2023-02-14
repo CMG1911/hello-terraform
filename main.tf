@@ -19,13 +19,15 @@ provider "aws" {
 
 resource "aws_instance" "app_server" {
 
-  ami           = "ami-0b752bf1df193a6c4"
-  instance_type = "t2.micro"
-
+  ami                    = "ami-0b752bf1df193a6c4"
+  instance_type          = "t2.micro"
+  key_name               = "clave-lucatic2"
+  subnet_id              = "subnet-04acd65b96246a2df"
+  vpc_security_group_ids = ["sg-01a5d2ec6fc03cc92"]
 
   tags = {
 
-    Name = "terraform-aws"
+    Name = "terraform-instance"
     APP  = "vue2048"
   }
 }
