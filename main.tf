@@ -1,9 +1,9 @@
 terraform {
-  
+
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      
+
       version = "~> 4.16"
     }
   }
@@ -26,6 +26,6 @@ resource "aws_instance" "app_server" {
   tags = {
 
     Name = "terraform-aws"
-
+    APP  = "vue2048"
   }
 }
