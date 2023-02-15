@@ -30,4 +30,13 @@ resource "aws_instance" "app_server" {
     Name = var.instance_name
     APP  = "vue2048"
   }
+
+  user_data = <<EOF
+        #!/bin/sh
+        sudo yum update -y
+        sudo yum install -y httpd.x86_64
+        sudo systemctl start httpd.service
+        sudo systemctl enable httpd.service
+   
+EOF  
 }
