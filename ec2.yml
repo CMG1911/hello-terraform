@@ -1,6 +1,5 @@
 ---
 - hosts : all
-  become: true
   vars:
     ansible_user: ec2-user
   tasks:
@@ -8,12 +7,14 @@
       yum:
         name: httpd
         update_cache: yes
+      become: true
 
     - name: keep apache enabled
       service:
         name: httpd
         enabled: true
         state: started
+      become: true
 
     - name: clone public html
       copy:
