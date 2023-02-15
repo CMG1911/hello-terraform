@@ -31,12 +31,24 @@ resource "aws_instance" "app_server" {
     APP  = "vue2048"
   }
 
-  user_data = <<EOF
-        #!/bin/sh
-        sudo yum update -y
-        sudo yum install -y httpd.x86_64
-        sudo systemctl start httpd.service
-        sudo systemctl enable httpd.service
-   
-EOF  
+  connection {
+    host        = self.public_ip
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = file("/home/sinensia/.ssh/clave-lucatic2.pem")
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum install -y httpd.x86_64",
+      "sudo systemctl start httpd.service",
+      "sudo systemctl enable httpd.service",
+      "sudo chown -R ec2-user /var/www/html",
+    ]
+  }
+
+  provisioner "file" {
+    source      = "../hello-2048/public_html/"
+    destination = "/var/www/html"
+  }
 }
