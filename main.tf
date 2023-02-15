@@ -31,7 +31,8 @@ resource "aws_instance" "app_server" {
     APP  = "vue2048"
   }
 
-   provisioner "local-exec" {
-    command = "sleep 20 && ansible-playbook -i aws_ec2.yml ec2.yml"
-   }
+  provisioner "local-exec" {
+    working_dir = "/home/sinensia/hello-terraform/ansible"
+    command = "ansible-playbook -i aws_ec2.yml ec2.yml"
+  }
 }
