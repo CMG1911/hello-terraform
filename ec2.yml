@@ -1,0 +1,25 @@
+---
+- hosts : all
+  become: true
+  vars:
+    ansible_user: ec2-user
+  tasks:
+    - name: install apache
+      yum:
+        name: httpd
+        update_cache: yes
+
+    - name: keep apache enabled
+      service:
+        name: httpd
+        enabled: true
+        state: started
+
+    - name: clone public html
+      copy:
+        src: ../hello-2048/public_html/
+        dest: /var/www/html/
+        owner: apache
+        group: apache
+        mode: "0644"
+        directory_mode: "0755"
