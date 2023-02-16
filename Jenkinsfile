@@ -39,6 +39,14 @@ pipeline {
                 }
              }
          }
+           
+         stage ('Ansible playbook call') {
+            steps{
+                 withAWS(credentials: 'carlos-aws') {
+                     ansiblePlaybook credentialsId: 'ssh-amazon', inventory: 'aws_ec2.yml', playbook: 'ec2.yml', vaultCredentialsId: 'token-git'
+                    }
+                }
+            }
     }
 }
 
