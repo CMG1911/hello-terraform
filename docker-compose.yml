@@ -2,6 +2,6 @@ version: "3"
 services:
    apache:
      build: .
-     image: ghcr.io/cmg1911/hello-2048
+     image: ghcr.io/cmg1911/hello-terraform
      ports:
       - "8080:80"
