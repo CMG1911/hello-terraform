@@ -30,9 +30,4 @@ resource "aws_instance" "app_server" {
     Name = var.instance_name
     APP  = "vue2048"
   }
-
-  provisioner "local-exec" {
-    working_dir = "/home/sinensia/hello-terraform/ansible"
-    command = "ansible-playbook -i aws_ec2.yml ec2.yml"
-  }
 }
