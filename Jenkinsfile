@@ -9,11 +9,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 withAWS(credentials: 'ruben-aws-credentials') {
+                    sh 'terraform -chdir=./terraform init'
                     sshagent(['amazon-ssh']) {
-                        sh 'terraform init'
-                        sh 'terraform fmt'
-                        sh 'terraform validate'
-                        sh 'terraform apply -auto-approve'
+                        sh 'terraform -chdir=./terraform fmt'
+                        sh 'terraform -chdir=./terraform validate'
+                        sh 'terraform -chdir=./terraform apply -auto-approve'
                     }                  
                 }
             }
