@@ -51,8 +51,9 @@
         owner: ec2-user
         group: ec2-user
 
-    - name: docker-compose 
+    - name: docker-compose p
       docker_compose:
          project_src: /home/ec2-user
          pull: true
-      
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
