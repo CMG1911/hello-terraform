@@ -47,7 +47,7 @@
 
     - name: docker-compose pull and up
       docker_compose:
-         project_src: /home/ec2-user/hello2048
+         project_src: /home/ec2-user
          pull: true
       vars:
         ansible_python_interpreter: /usr/bin/python3
