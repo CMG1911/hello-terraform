@@ -30,13 +30,19 @@
         enabled: true
         state: started
 
+    - name: Modify User
+      user:
+        name: ec2-user
+        groups: docker
+        append: yes
+
     - name: Install docker-compose
       pip:
         name: docker-compose
         executable: pip3
     
     - name: ghcr register
-      shell: "echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin"
+      shell: "echo $CR_PAT | docker login ghcr.io -u CMG1911 --password-stdin"
 
     - name: url docker-compose
       get_url:

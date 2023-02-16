@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                withAWS(credentials: 'ruben-aws-credentials') {
+                withAWS(credentials: 'carlos-aws') {
                     sh 'terraform -chdir=./terraform init'
                     sshagent(['amazon-ssh']) {
                         sh 'terraform -chdir=./terraform fmt'
